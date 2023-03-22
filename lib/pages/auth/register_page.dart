@@ -19,9 +19,9 @@ class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-      ), // Default color is blue
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(context).primaryColor,
+      // ), // Default color is blue
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
@@ -38,9 +38,12 @@ class _RegisterPageState extends State<RegisterPage> {
                 const Text("Create your account now to explore",
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
+
+                const SizedBox(height: 40),
+
                 Image.asset("assets/register.jpg"),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
 
                 // Enter user's full name
                 TextFormField(

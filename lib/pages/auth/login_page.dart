@@ -27,9 +27,9 @@ class _LoginPageState extends State<LoginPage> {
 
     // Return login form
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
-      ), // Default color is blue
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(context).primaryColor,
+      // ), // Default color is blue
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 80),
@@ -46,9 +46,12 @@ class _LoginPageState extends State<LoginPage> {
                 const Text("Login now to join the party!",
                     style:
                         TextStyle(fontSize: 15, fontWeight: FontWeight.w400)),
+
+                const SizedBox(height: 40),
+
                 Image.asset("assets/login.jpg"),
 
-                const SizedBox(height: 20),
+                const SizedBox(height: 40),
 
                 // Enter email
                 TextFormField(
