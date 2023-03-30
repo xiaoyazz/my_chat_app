@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 const textInputDecoration = InputDecoration(
   labelStyle: TextStyle(color: Colors.black, fontWeight: FontWeight.w300),
   focusedBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Color(0xFF55dde0), width: 2),
+    borderSide: BorderSide(color: Color(0xFFffbc42), width: 2),
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Color(0xFFffbc42), width: 2),
+    borderSide: BorderSide(color: Color(0xFF6a4c93), width: 2),
   ),
   errorBorder: OutlineInputBorder(
     borderSide: BorderSide(color: Color(0xFFef476f), width: 2),

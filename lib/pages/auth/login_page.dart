@@ -139,8 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                                   borderRadius: BorderRadius.circular(30))),
                           child: const Text(
                             "Sign In",
-                            style: TextStyle(
-                                color: Color(0xFF463f3a), fontSize: 16),
+                            style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                           onPressed: () {
                             login();

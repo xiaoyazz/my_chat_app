@@ -153,8 +153,7 @@ class _RegisterPageState extends State<RegisterPage> {
                                   borderRadius: BorderRadius.circular(30))),
                           child: const Text(
                             "Register",
-                            style: TextStyle(
-                                color: Color(0xFF463f3a), fontSize: 16),
+                            style: TextStyle(color: Colors.white, fontSize: 16),
                           ),
                           onPressed: () {
                             register();
