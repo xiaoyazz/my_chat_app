@@ -52,7 +52,8 @@ class DatabaseService {
       "groupIcon": "",
       "admin": "${id}_$userName",
       "members": [],
-      "groupId": "", // we don't have it yet
+      "groupId": "",
+      "recentMessage": "", // we don't have it yet
       "recentMessageSender": "",
     });
     // After the group created, we create a document reference
@@ -68,5 +69,26 @@ class DatabaseService {
       "groups":
           FieldValue.arrayUnion(["${groupDocumentReference.id}_$groupName"])
     });
+  }
+
+  // Get the chat
+  getChats(String groupId) async {
+    return groupCollection
+        .doc(groupId)
+        .collection("messages")
+        .orderBy("time")
+        .snapshots();
+  }
+
+  // Get group admin
+  Future getGroupAdmin(String groupId) async {
+    DocumentReference d = groupCollection.doc(groupId);
+    DocumentSnapshot documentSnapshot = await d.get();
+    return documentSnapshot['admin'];
+  }
+
+  // Get group members
+  getGroupMembers(groupId) async {
+    return groupCollection.doc(groupId).snapshots();
   }
 }
