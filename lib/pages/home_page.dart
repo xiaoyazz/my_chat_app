@@ -7,6 +7,7 @@ import "package:my_chat_app/pages/profile_page.dart";
 import "package:my_chat_app/pages/search_page.dart";
 import "package:my_chat_app/service/auth_service.dart";
 import "package:my_chat_app/service/database_service.dart";
+import "package:my_chat_app/widgets/group_tile.dart";
 import "package:my_chat_app/widgets/widgets.dart";
 
 class HomePage extends StatefulWidget {
@@ -29,6 +30,15 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     getUserData();
+  }
+
+  // String manipulation to retrieve groups id from database
+  String getId(String res) {
+    return res.substring(0, res.indexOf("_"));
+  }
+
+  String getName(String res) {
+    return res.substring(res.indexOf("_") + 1);
   }
 
   getUserData() async {
@@ -302,7 +312,7 @@ class _HomePageState extends State<HomePage> {
                         .pop(); // Make the cancel button functional
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Theme.of(context).primaryColor),
+                      backgroundColor: Colors.grey[700]),
                   child: const Text("CANCEL"),
                 ),
                 ElevatedButton(
@@ -325,7 +335,7 @@ class _HomePageState extends State<HomePage> {
                   },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: Theme.of(context).primaryColor),
-                  child: const Text("ENABLE"),
+                  child: const Text("CREATE"),
                 ),
               ],
             );
@@ -333,6 +343,7 @@ class _HomePageState extends State<HomePage> {
         });
   }
 
+// Display the party groups
   groupList() {
     return StreamBuilder(
       stream: groups,
@@ -341,7 +352,19 @@ class _HomePageState extends State<HomePage> {
         if (snapshot.hasData) {
           if (snapshot.data['groups'] != null) {
             if (snapshot.data['groups'].length != 0) {
-              return Text("Helloooo");
+              return ListView.builder(
+                itemCount: snapshot.data['groups'].length,
+                itemBuilder: (context, index) {
+                  int reverseIndex = snapshot.data['groups'].length -
+                      index -
+                      1; // To have a reversed index to show the latest group
+                  return GroupTile(
+                    groupId: getId(snapshot.data['groups'][reverseIndex]),
+                    groupName: getName(snapshot.data["groups"][reverseIndex]),
+                    userName: snapshot.data['fullName'],
+                  );
+                },
+              );
             } else {
               return noGroupWidget();
             }
