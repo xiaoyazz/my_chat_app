@@ -20,6 +20,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   String userName = "";
   String email = "";
+  String profilePic = "";
   AuthService authService = AuthService();
   Stream? groups;
   bool _isLoading = false;
