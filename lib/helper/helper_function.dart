@@ -5,6 +5,7 @@ class HelperFunctions {
   static String userLoggedInKey = "LOGGEDINKEY";
   static String userNameKey = "USERNAMEKEY";
   static String userEmailKey = "USEREMAILKEY";
+  static String userImageKey = "USERIMAGEKEY";
 
   // Save the data to SF
   static Future<bool> saveUserLoggedInStatus(bool isUserLoggedIn) async {
