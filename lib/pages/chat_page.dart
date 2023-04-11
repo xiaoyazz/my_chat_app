@@ -76,15 +76,15 @@ class _ChatPageState extends State<ChatPage> {
             child: Container(
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
               width: MediaQuery.of(context).size.width,
-              color: Colors.grey[700],
+              color: Colors.grey[200],
               child: Row(children: [
                 Expanded(
                     child: TextFormField(
                   controller: messageController,
-                  style: const TextStyle(color: Colors.white),
-                  decoration: const InputDecoration(
+                  style: const TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
                     hintText: "Send a message...",
-                    hintStyle: TextStyle(color: Colors.white, fontSize: 16),
+                    hintStyle: TextStyle(color: Colors.grey[700], fontSize: 16),
                     border: InputBorder.none,
                   ),
                 )),

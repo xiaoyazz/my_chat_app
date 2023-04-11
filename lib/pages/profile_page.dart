@@ -33,10 +33,23 @@ class _ProfilePageState extends State<ProfilePage> {
         child: ListView(
           padding: const EdgeInsets.symmetric(vertical: 50),
           children: <Widget>[
-            Icon(
-              Icons.account_circle,
-              size: 150,
-              color: Colors.grey[700],
+            // Icon(
+            //   Icons.account_circle,
+            //   size: 150,
+            //   color: Colors.grey[700],
+            // ),
+            DrawerHeader(
+              child: CircleAvatar(
+                radius: 30, // specify desired radius of the circular image
+                backgroundImage: AssetImage(widget.userName == 'Jenny'
+                        ? 'assets/maya.jpeg' // Set the profile picture asset path for 'Jenny'
+                        : widget.userName == 'Ben'
+                            ? 'assets/phoenixsm.jpeg' // Set the profile picture asset path for 'Ben'
+                            : 'assets/${widget.userName.toLowerCase()}.jpeg'
+                    // Set the profile picture asset path based on widget.userName for other values
+                    ),
+                backgroundColor: Colors.grey[700],
+              ),
             ),
             const SizedBox(
               height: 15,
@@ -186,10 +199,32 @@ class _ProfilePageState extends State<ProfilePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Icon(
-              Icons.account_circle,
-              size: 200,
-              color: Colors.grey[700],
+            // Icon(
+            //   Icons.account_circle,
+            //   size: 200,
+            //   color: Colors.grey[700],
+            // ),
+            ClipOval(
+              child: Image.asset(
+                widget.userName == 'Jenny'
+                    ? 'assets/maya.jpeg' // Set the profile picture asset path for 'Jenny'
+                    : widget.userName == 'Ben'
+                        ? 'assets/phoenix.jpeg' // Set the profile picture asset path for 'Ben'
+                        : 'assets/${widget.userName.toLowerCase()}.jpeg', // Set the profile picture asset path based on widget.userName for other values
+                width: 200, // specify desired width of the circular image
+                height: 200, // specify desired height of the circular image
+                fit: BoxFit
+                    .cover, // specify the fit of the image within the circular shape
+                errorBuilder: (BuildContext context, Object exception,
+                    StackTrace? stackTrace) {
+                  // You can specify a custom error widget here in case the image fails to load
+                  return Icon(
+                    Icons.account_circle,
+                    size: 200,
+                    color: Colors.grey[700],
+                  );
+                },
+              ),
             ),
             const SizedBox(
               height: 15,
@@ -208,7 +243,34 @@ class _ProfilePageState extends State<ProfilePage> {
                 const Text("Email", style: TextStyle(fontSize: 17)),
                 Text(widget.email, style: const TextStyle(fontSize: 17)),
               ],
-            )
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                // Add your button click logic here
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.resolveWith<Color>(
+                  (Set<MaterialState> states) {
+                    // Set the color based on the button's state
+                    if (states.contains(MaterialState.pressed)) {
+                      // Set the color for pressed state
+                      return Theme.of(context).primaryColor.withOpacity(0.5);
+                    }
+                    // Set the default color
+                    return Theme.of(context).primaryColor;
+                  },
+                ),
+                minimumSize: MaterialStateProperty.all<Size>(
+                  Size(double.infinity,
+                      50), // Set the width of the button to fill the parent container horizontally
+                ),
+              ),
+              child: const Text(
+                'Edit My Profile',
+                style: TextStyle(color: Colors.white, fontSize: 16),
+              ), // Set the text for the button
+            ),
           ],
         ),
       ),

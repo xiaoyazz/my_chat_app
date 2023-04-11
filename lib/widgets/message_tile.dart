@@ -44,15 +44,15 @@ class _MessageTileState extends State<MessageTile> {
                     bottomRight: Radius.circular(20)),
             color: widget.sentByMe
                 ? Theme.of(context).primaryColor
-                : Colors.grey[700]),
+                : Colors.grey[200]),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text(
             widget.sender.toUpperCase(),
             textAlign: TextAlign.center,
-            style: const TextStyle(
+            style: TextStyle(
                 fontSize: 13,
                 fontWeight: FontWeight.bold,
-                color: Colors.white,
+                color: widget.sentByMe ? Colors.white : Colors.black,
                 letterSpacing: -0.5),
           ),
           const SizedBox(
@@ -61,7 +61,9 @@ class _MessageTileState extends State<MessageTile> {
           Text(
             widget.message,
             textAlign: TextAlign.center,
-            style: const TextStyle(fontSize: 16, color: Colors.white),
+            style: widget.sentByMe
+                ? const TextStyle(fontSize: 16, color: Colors.white)
+                : const TextStyle(fontSize: 16, color: Colors.black),
           )
         ]),
       ),
